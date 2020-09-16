@@ -9,7 +9,24 @@ body {
     font-weight: bold;
 }
 
+span {
+    margin: 5px;
+    font-weight: bold;
+}
+
+label {
+    width: 150px;
+    display: inline-block;
+    margin: 5px;
+}
+
 input {
     margin: 5px;
     padding: 5px;
+}
+
+.submit {
+    font-weight: bold;
+    border: none;
+    padding: 10px;
 }

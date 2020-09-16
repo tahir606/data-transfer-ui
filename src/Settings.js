@@ -69,46 +69,43 @@ class Settings extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>Database Export Location</label>
+                <span>Database Export Location</span><br/><br/>
                 <label>
-                    <input
-                        placeholder="IP Address"
-                        type="text"
-                        name="ipAddress"
-                        value={this.state.ipAddress}
-                        onChange={this.handleChange}
-                    />
-                </label><br/>
-                <label>
-                    <input
-                        placeholder="Database Username"
-                        name="dbUser"
-                        type="text"
-                        value={this.state.dbUser}
-                        onChange={this.handleChange}
-                    />
-                </label><br/>
-                <label>
-                    <input
-                        placeholder="Database Password"
-                        name="dbPass"
-                        type="text"
-                        value={this.state.dbPass}
-                        onChange={this.handleChange}
-                    />
-                </label><br/>
+                    IP Address:
+                </label>
                 <input
+                    type="text"
+                    name="ipAddress"
+                    value={this.state.ipAddress}
+                    onChange={this.handleChange}
+                />
+                <br/>
+                <label>
+                    Database Username:
+                </label>
+                <input
+                    name="dbUser"
+                    type="text"
+                    value={this.state.dbUser}
+                    onChange={this.handleChange}
+                />
+                <br/>
+                <label>
+                    Database Password:
+                </label>
+                <input
+                    name="dbPass"
+                    type="password"
+                    value={this.state.dbPass}
+                    onChange={this.handleChange}
+                />
+                <br/>
+                <input
+                    className="submit"
                     type="submit"
                     value="Submit"
                 />
                 <br/><br/>
-                <label>
-                    {this.state.ipAddress}
-                    <br/>
-                    {this.state.dbUser}
-                    <br/>
-                    {this.state.dbPass}
-                </label>
             </form>
         );
     }
