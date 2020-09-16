@@ -69,6 +69,7 @@ class Settings extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+                <label>Database Export Location</label>
                 <label>
                     <input
                         placeholder="IP Address"
