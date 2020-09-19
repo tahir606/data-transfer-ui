@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Title from "./Title";
-import Settings from "./Settings";
+import LocalSettings from "./LocalSettings";
+import ExportSettings from "./ExportSettings";
 
 class Dashboard extends React.Component {
 
@@ -18,9 +19,9 @@ class Dashboard extends React.Component {
                     heading={this.heading}
                 />
                 <br/>
-                <Settings
-                    heading={this.heading}
-                />
+                <LocalSettings/>
+                <br/>
+                <ExportSettings/>
             </div>
         );
     }

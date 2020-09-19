@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Settings extends React.Component {
+class LocalSettings extends React.Component {
 
     endpoint = 'http://192.168.100.28:8081/settings';
 
@@ -69,7 +69,7 @@ class Settings extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <span>Database Export Location</span><br/><br/>
+                <span>Database Local Settings</span><br/><br/>
                 <label>
                     IP Address:
                 </label>
@@ -111,4 +111,4 @@ class Settings extends React.Component {
     }
 }
 
-export default Settings;
+export default LocalSettings;

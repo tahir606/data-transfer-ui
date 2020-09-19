@@ -20,7 +20,7 @@ label {
     margin: 5px;
 }
 
-input {
+input, select {
     margin: 5px;
     padding: 5px;
 }
