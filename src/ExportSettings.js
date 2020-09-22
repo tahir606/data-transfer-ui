@@ -1,12 +1,14 @@
 import React from 'react';
 
 class ExportSettings extends React.Component {
-    endpoint = 'http://192.168.100.28:8081/settings';
+
+    endpoint = 'http://localhost:8081/settings/export';
 
     constructor(props) {
         super(props);
         this.state = {
             APILink: '',
+            tableNames: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,21 +27,21 @@ class ExportSettings extends React.Component {
     handleSubmit(event) {
 
         let apiLink = this.state.APILink;
+        let tableNames = this.state.tableNames;
 
         event.preventDefault();
 
-        // fetch(this.endpoint, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         ip: ip,
-        //         dbUser: dbUser,
-        //         dbPass: dbPass
-        //     })
-        // })
+        fetch(this.endpoint, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                apiLink: apiLink,
+                tableNames: tableNames,
+            })
+        })
     }
 
     render() {
@@ -56,13 +58,22 @@ class ExportSettings extends React.Component {
                     onChange={this.handleChange}
                 />
                 <br/>
-                <label>Choose Table:</label>
-                <select id="table" name="table">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
-                </select>
+                <label>
+                    Table Names:
+                </label>
+                <input
+                    type="text"
+                    name="tableNames"
+                    value={this.state.tableNames}
+                    onChange={this.handleChange}
+                />
+                {/*<label>Choose Table:</label>*/}
+                {/*<select id="table" name="table">*/}
+                {/*    <option value="volvo">Volvo</option>*/}
+                {/*    <option value="saab">Saab</option>*/}
+                {/*    <option value="fiat">Fiat</option>*/}
+                {/*    <option value="audi">Audi</option>*/}
+                {/*</select>*/}
                 <br/>
                 <input
                     className="submit"
