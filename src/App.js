@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-// import axios from 'axios';
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom';
 
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -8,7 +7,7 @@ import Home from './Home';
 
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
-import { getToken, removeUserSession, setUserSession } from './utils/Common';
+import {getToken, removeUserSession, setUserSession} from './utils/Common';
 
 function App() {
     const [authLoading, setAuthLoading] = useState(true);
@@ -19,13 +18,19 @@ function App() {
             return;
         }
 
-        // axios.get(`http://localhost:4000/verifyToken?token=${token}`).then(response => {
-        //     setUserSession(response.data.token, response.data.user);
-        //     setAuthLoading(false);
-        // }).catch(error => {
-        //     removeUserSession();
-        //     setAuthLoading(false);
-        // });
+        fetch(`http://localhost:8081/login?token=${token}`)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                setUserSession(result.token, result.user);
+                setAuthLoading(false);
+            })
+            .catch(error => {
+                console.log(error);
+                removeUserSession();
+                setAuthLoading(false);
+            });
+
     }, []);
 
     if (authLoading && getToken()) {
@@ -38,14 +43,16 @@ function App() {
                 <div>
                     <div className="header">
                         <NavLink exact activeClassName="active" to="/">Home</NavLink>
-                        <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
-                        <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
+                        <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token
+                        only)</small>
+                        <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token
+                        only)</small>
                     </div>
                     <div className="content">
                         <Switch>
-                            <Route exact path="/" component={Home} />
-                            <PublicRoute path="/login" component={Login} />
-                            <PrivateRoute path="/dashboard" component={Dashboard} />
+                            <Route exact path="/" component={Home}/>
+                            <PublicRoute path="/login" component={Login}/>
+                            <PrivateRoute path="/dashboard" component={Dashboard}/>
                         </Switch>
                     </div>
                 </div>

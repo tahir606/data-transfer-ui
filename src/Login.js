@@ -12,26 +12,28 @@ function Login(props) {
         setError(null);
         setLoading(true);
 
-        if (username.value === 'admin' && password.value === 'admin') {
+        fetch('http://localhost:8081/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value,
+            })
+        })
+            .then(res => res.json())
+            .then(result => {
+                setLoading(false);
+                console.log(result);
+                setUserSession(result.token, result.user);
+                props.history.push('/dashboard');
+            }).catch(error => {
             setLoading(false);
-            setUserSession('token', 'admin');
-            props.history.push('/dashboard');
-        } else {
-            setLoading(false);
-            setError("Incorrect Username or Password")
-            // if (error.response.status === 401) setError(error.response.data.message);
-            // else setError("Something went wrong. Please try again later.");
-        }
-
-        // axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
-        //     setLoading(false);
-        //     setUserSession(response.data.token, response.data.user);
-        //     props.history.push('/dashboard');
-        // }).catch(error => {
-        //     setLoading(false);
-        //     if (error.response.status === 401) setError(error.response.data.message);
-        //     else setError("Something went wrong. Please try again later.");
-        // });
+            if (error.response.status === 401) setError(error.response.data.message);
+            else setError("Something went wrong. Please try again later.");
+        });
 
     }
 
