@@ -12,7 +12,7 @@ function Login(props) {
         setError(null);
         setLoading(true);
 
-        if (username.value == 'admin' && password.value == 'admin') {
+        if (username.value === 'admin' && password.value === 'admin') {
             setLoading(false);
             setUserSession('token', 'admin');
             props.history.push('/dashboard');
