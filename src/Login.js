@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {setUserSession} from "./utils/Common";
 
 function Login(props) {
@@ -6,6 +6,10 @@ function Login(props) {
     const password = useFormInput('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        console.log(props);
+    })
 
     // handle button click of login form
     const handleLogin = () => {
