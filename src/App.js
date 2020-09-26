@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom';
+import {BrowserRouter, Switch, NavLink} from 'react-router-dom';
 
 import Login from './Login';
 import Dashboard from './Dashboard';
-import Home from './Home';
 
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import {getToken, removeUserSession, setUserSession} from './utils/Common';
+import Title from "./Title";
 
 function App() {
     const [authLoading, setAuthLoading] = useState(true);
@@ -42,16 +42,15 @@ function App() {
             <BrowserRouter>
                 <div>
                     <div className="header">
-                        <NavLink exact activeClassName="active" to="/">Home</NavLink>
+                        <Title heading="BITS Data Transfer"/>
                         <NavLink activeClassName="active" to="/login">
-                            Login</NavLink><small>(Access without token only)</small>
+                            Login</NavLink>
                         <NavLink activeClassName="active" to="/dashboard">
-                            Dashboard</NavLink><small>(Access with token only)</small>
+                            Dashboard</NavLink>
                     </div>
                     <div className="content">
                         <Switch>
-                            <Route exact path="/" component={Home}/>
-                            <PublicRoute path="/login" component={Login}/>
+                            <PublicRoute path="/(login|)/" component={Login}/>
                             <PrivateRoute path="/dashboard" component={Dashboard}/>
                         </Switch>
                     </div>

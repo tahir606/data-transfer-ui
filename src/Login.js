@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {setUserSession} from "./utils/Common";
 
 function Login(props) {
@@ -6,10 +6,6 @@ function Login(props) {
     const password = useFormInput('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        console.log(props);
-    })
 
     // handle button click of login form
     const handleLogin = () => {
@@ -43,7 +39,7 @@ function Login(props) {
 
     return (
         <div>
-            Login<br/><br/>
+            <span>Login</span><br/><br/>
             <div>
                 Username<br/>
                 <input type="text" {...username} autoComplete="new-password"/>
